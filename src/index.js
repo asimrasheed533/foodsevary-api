@@ -26,7 +26,7 @@ monogoose.connect(process.env.MONGO_URL).then(() => {
 //api endpoints
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Welcome to the API",
+    message: "Welcome to the Cooking API",
   });
 });
 

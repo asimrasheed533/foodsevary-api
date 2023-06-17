@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const uploadImage = require("../uploadImage");
 
 const schema = new mongoose.Schema({
   name: String,
@@ -38,12 +37,11 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
     const product = new Product({
       name: req.body.name,
       brand: req.body.brand,
       price: req.body.price,
-      img: imagePath,
+      img: req.body.name,
       stock: req.body.stock,
       category: req.body.category,
       description: req.body.description,
@@ -59,12 +57,11 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
     const product = await Product.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
       brand: req.body.brand,
       price: req.body.price,
-      img: imagePath,
+      img: req.body.name,
       stock: req.body.stock,
       category: req.body.category,
       description: req.body.description,

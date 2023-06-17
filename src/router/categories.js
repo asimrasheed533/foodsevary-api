@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const uploadImage = require("../uploadImage");
 
 const schema = new mongoose.Schema({
   name: String,
@@ -31,10 +30,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
     const category = new Category({
       name: req.body.name,
-      img: imagePath,
+      img: req.body.img,
     });
     await category.save();
     res.send(category);
@@ -45,10 +43,9 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
     const category = await Category.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
-      img: imagePath,
+      img: req.body.img,
     });
     await category.save();
     res.send(category);

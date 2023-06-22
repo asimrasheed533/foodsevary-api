@@ -11,7 +11,6 @@ const schema = new mongoose.Schema({
   description: String,
   isFeatured: Boolean,
   isActive: Boolean,
-  disprice: Number,
 });
 
 const Product = mongoose.model("Product", schema);
@@ -42,13 +41,12 @@ router.post("/", async (req, res) => {
       name: req.body.name,
       brand: req.body.brand,
       price: req.body.price,
-      img: req.body.name,
+      img: req.body.img,
       stock: req.body.stock,
       category: req.body.category,
       description: req.body.description,
       isFeatured: req.body.isFeatured,
       isActive: req.body.isActive,
-      disprice: req.body.disprice,
     });
     await product.save();
     res.send(product);
@@ -63,13 +61,12 @@ router.put("/:id", async (req, res) => {
       name: req.body.name,
       brand: req.body.brand,
       price: req.body.price,
-      img: req.body.name,
+      img: req.body.img,
       stock: req.body.stock,
       category: req.body.category,
       description: req.body.description,
       isFeatured: req.body.isFeatured,
       isActive: req.body.isActive,
-      disprice: req.body.disprice,
     });
     await product.save();
     res.send(product);

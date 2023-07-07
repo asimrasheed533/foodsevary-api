@@ -3,10 +3,12 @@ const content = require("./router/content");
 const express = require("express");
 const monogoose = require("mongoose");
 const orders = require("./router/orders");
+const users = require("./router/users");
 const products = require("./router/products");
 const cors = require("cors");
 
 const dotenv = require("dotenv");
+const { use } = require("bcrypt/promises");
 
 dotenv.config();
 
@@ -34,6 +36,7 @@ app.use("/api/products", products);
 app.use("/api/categories", categories);
 app.use("/api/content", content);
 app.use("/api/orders", orders);
+app.use("/api/users", users);
 
 //listen
 app.listen(port, () =>
